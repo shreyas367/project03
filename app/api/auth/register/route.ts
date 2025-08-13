@@ -39,6 +39,13 @@ export async function POST(request:NextRequest){
 )
 }
 catch{
+    console.error("Registration error hai",error);
+    return NextResponse.json(
+        {error: "failed to register"},
+        {status:400}
+    );
+
+
 
 }
 
