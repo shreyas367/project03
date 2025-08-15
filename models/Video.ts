@@ -1,6 +1,7 @@
 import mongoose, { Schema, model, models } from "mongoose";
 
 export interface IVideo {
+    _id:string
   title: string;
   description: string;
   url: string;       // ImageKit video URL
