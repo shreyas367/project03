@@ -1,5 +1,7 @@
 // File: app/api/upload-auth/route.ts
 import { getUploadAuthParams } from "@imagekit/next/server"
+import { NextResponse } from "next/server"
+
 
 export async function GET() {
     // Your application logic to authenticate the user
@@ -14,18 +16,14 @@ export async function GET() {
         // token: "random-token", // Optional, a unique token for request
     })
 
-    return Response.json({ token, expire, signature, publicKey: process.env.IMAGEKIT_PUBLIC_KEY })
+    return Response.json({ token, expire, signature, publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY })
 
 }
-catch(error){
-        return Response.json(
-            {
-                error:"auth for imagekit"
-
-        },{
-            status:500
-        }
-    )
-
-}
+catch (error) {
+    console.error("ImageKit auth error:", error);
+    return NextResponse.json(
+      { error: "Failed to get ImageKit auth" },
+      { status: 500 }
+    );
+  }
 }
