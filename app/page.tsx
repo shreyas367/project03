@@ -1,10 +1,9 @@
-// app/page.tsx
-import Header from "@/app/components/Header"; // your client Header
+import ClientHeader from "./components/ClientHeader"; // adjust path if needed
 import { connectToDatabase } from "@/lib/db";
 import Video, { IVideo } from "@/models/Video";
 import { HydratedDocument } from "mongoose";
 
-export const revalidate = 0; // disable caching for SSR
+export const revalidate = 0;
 
 async function fetchVideos(): Promise<IVideo[]> {
   await connectToDatabase();
@@ -19,8 +18,8 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen flex flex-col">
-      {/* Header */}
-      <Header />
+      {/* ✅ Session-aware Header */}
+      <ClientHeader />
 
       {/* Main Content */}
       <section className="flex flex-1 flex-col items-center justify-center text-center px-6 mt-8">
